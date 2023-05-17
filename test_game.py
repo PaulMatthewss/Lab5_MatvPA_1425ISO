@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock, Mock, patch
-from setup import Player, TicTacToeGame
+from tic-tac-toe import Player, TicTacToeGame
 
 class TestClass(unittest.TestCase):
     def setUp(self):
