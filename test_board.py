@@ -1,4 +1,4 @@
-from setup import TicTacToeGame, TicTacToeBoard
+from tic-tac-toe import TicTacToeGame, TicTacToeBoard
 import unittest
 from unittest.mock import patch
 import sqlite3
