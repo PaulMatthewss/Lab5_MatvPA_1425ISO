@@ -35,13 +35,18 @@ jobs:
 
       # Uploads artifact
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+      
+      - run: mkdir -p path/to/artifact
+
+      - run: echo hello > path/to/artifact/tic_tac_toe.exe
+      
+      - uses: actions/upload-artifact@v3
         with:
           name: exe
-          path: build/tic_tac_toe.exe
+          path: path/to/artifact
           
   release:
-    permissions: write-all
+    permissions: read | write
     name: Create Release
     runs-on: windows-latest
     if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
@@ -49,6 +54,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: exe
+          path: path/to/artifact
+          
+      - run: cat path/to/artifact/tic_tac_toe.exe
         
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
