@@ -43,6 +43,7 @@ jobs:
           path: build/tic_tac_toe.exe
           
   release:
+    permissions: write-all
     name: Create Release
     runs-on: windows-latest
     if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
@@ -50,6 +51,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Get Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: exe
+          path: build/tic_tac_toe.exe
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
