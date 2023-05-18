@@ -58,7 +58,7 @@ jobs:
           name: my_artifact
           path: build/tic_tac_toe.exe
           
-      - run: cat path/to/artifact/tic_tac_toe.exe
+      - run: cat build/tic_tac_toe.exe
         
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
