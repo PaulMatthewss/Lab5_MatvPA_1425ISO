@@ -44,7 +44,7 @@ jobs:
           
   release:
     name: Create Release
-    permissions: read-all
+    permissions: write-all
     runs-on: windows-latest
     if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
     needs: [build]
@@ -67,4 +67,4 @@ jobs:
           title: First_Release
           draft: false
           prerelease: false
-          files: tic_tac_toe.exe
+          files: build/tic_tac_toe.exe
