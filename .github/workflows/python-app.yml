@@ -46,7 +46,7 @@ jobs:
           
   release:
     name: Create Release
-    permissions: write-all
+    permissions: read-all|write-all
     runs-on: windows-latest
     if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
     needs: [build]
