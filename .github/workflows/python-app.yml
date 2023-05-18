@@ -62,6 +62,4 @@ jobs:
           title: First_Release
           draft: false
           prerelease: false
-          files: |
-            LICENSE.txt
-            *.jar
+          files: exe
