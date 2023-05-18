@@ -43,6 +43,8 @@ jobs:
   release:
     name: Create Release
     runs-on: windows-latest
+    if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
+    needs: [build]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
