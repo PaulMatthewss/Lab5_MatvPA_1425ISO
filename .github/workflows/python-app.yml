@@ -58,6 +58,9 @@ jobs:
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: new_tag
+          title: First_Release
+          draft: false
           prerelease: false
           files: |
             LICENSE.txt
