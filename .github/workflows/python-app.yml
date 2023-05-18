@@ -27,22 +27,20 @@ jobs:
           architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
 
       # Build python script into a stand-alone exe
-      - uses: Nuitka/Nuitka-Action@main
+      - name: Python GUI With Tkinter
+        uses: Nuitka/Nuitka-Action@main
         with:
           nuitka-version: main
           script-name: tic_tac_toe.py
-          onefile: true
+          standalone: true
+          enable-plugins: tk-inter
 
       # Uploads artifact
       - name: Upload Artifact
-        run: mkdir -p path/to/artifact
-
-      - run: echo hello > path/to/artifact/tic_tac_toe.exe
-      
-      - uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
-          name: exe
-          path: path/to/artifact
+          name: my_artifact
+          path: build/tic_tac_toe.exe
           
   release:
     name: Create Release
@@ -57,8 +55,8 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
-          name: exe
-          path: path/to/artifact
+          name: my_artifact
+          path: build/tic_tac_toe.exe
           
       - run: cat path/to/artifact/tic_tac_toe.exe
         
@@ -69,4 +67,4 @@ jobs:
           title: First_Release
           draft: false
           prerelease: false
-          files: exe.zip
+          files: tic_tac_toe.exe
