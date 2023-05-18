@@ -45,7 +45,7 @@ jobs:
           path: path/to/artifact
           
   release:
-    permissions: read | write
+    permissions: write_all
     name: Create Release
     runs-on: windows-latest
     if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
